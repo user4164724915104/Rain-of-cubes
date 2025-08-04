@@ -2,12 +2,23 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    public bool IsChangeColor { get => _isChangeColor; }
+    private Renderer _renderer;
     private bool _isChangeColor = false;
 
-    public void Initialize(bool isChangeColor, Color color)
+    public bool IsChangeColor { get => _isChangeColor; }
+
+    private void Start() => _renderer = GetComponent<Renderer>();
+
+    private void OnDisable()
     {
-        _isChangeColor = isChangeColor;
-        GetComponent<Renderer>().material.color = color;
+        _renderer.material.color = Color.gray;
+        _isChangeColor = false;
+    }
+
+    public Cube InitializeReleasing(Cube cube)
+    {
+        cube._renderer.material.color = Random.ColorHSV();
+        cube._isChangeColor = true;
+        return cube;
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -7,18 +8,7 @@ public class CubesPool : MonoBehaviour
     [SerializeField] private float _repeatRate;
     [SerializeField] private int _poolCapacity;
     [SerializeField] private int _poolMaxSize;
-    [SerializeField] private Plane _plane;
     private ObjectPool<Cube> _pool;
-
-    private void OnEnable()
-    {
-        _plane.OnCubeHit += Release;
-    }
-
-    private void OnDisable()
-    {
-        _plane.OnCubeHit -= Release;
-    }
 
     private void Awake()
     {
@@ -32,11 +22,9 @@ public class CubesPool : MonoBehaviour
         maxSize: _poolMaxSize);
     }
 
-    void Start() => InvokeRepeating(nameof(GetCube), 0, _repeatRate);
+    private void Start() => StartCoroutine(GetCubeCutdown(_repeatRate));
 
     private void GetCube() => _pool.Get();
-
-    private void Release(Cube cube) => _pool.Release(cube);
 
     private void ActionOnGet(Cube cube)
     {
@@ -44,7 +32,34 @@ public class CubesPool : MonoBehaviour
         float spawnPointZ = Random.Range(-6f, 6f);
         float spawnPointY = 10;
         cube.transform.position = new Vector3(spawnPointX, spawnPointY, spawnPointZ);
-        //cube.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+        cube.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         cube.gameObject.SetActive(true);
+    }
+
+    private IEnumerator GetCubeCutdown(float repeatRate)
+    {
+        WaitForSeconds wait = new(repeatRate);
+
+        while (true)
+        {
+            GetCube();
+            yield return wait;
+        }
+    }
+
+    private IEnumerator ReleaseCubeCutdown(Cube cube)
+    {
+        var wait = new WaitForSeconds(Random.Range(2f,5f));
+
+        yield return wait;
+        _pool.Release(cube);
+    }
+
+    public void ReleasingCube(Cube cube)
+    {
+        if (cube != null)
+        {
+            StartCoroutine(ReleaseCubeCutdown(cube)); 
+        }
     }
 }
