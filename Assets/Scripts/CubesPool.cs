@@ -22,9 +22,14 @@ public class CubesPool : MonoBehaviour
         maxSize: _poolMaxSize);
     }
 
-    private void Start() => StartCoroutine(GetCubeCutdown(_repeatRate));
+    private void Start() =>
+        StartCoroutine(GetCubeCutdown(_repeatRate));
 
-    private void GetCube() => _pool.Get();
+    private void GetCube() =>
+        _pool.Get();
+
+    private void ReleaseCube(Cube cube) =>
+        _pool.Release(cube);
 
     private void ActionOnGet(Cube cube)
     {
@@ -40,26 +45,18 @@ public class CubesPool : MonoBehaviour
     {
         WaitForSeconds wait = new(repeatRate);
 
-        while (true)
+        while (enabled)
         {
             GetCube();
             yield return wait;
         }
     }
 
-    private IEnumerator ReleaseCubeCutdown(Cube cube)
-    {
-        var wait = new WaitForSeconds(Random.Range(2f,5f));
-
-        yield return wait;
-        _pool.Release(cube);
-    }
-
     public void ReleasingCube(Cube cube)
     {
         if (cube != null)
         {
-            StartCoroutine(ReleaseCubeCutdown(cube)); 
+            ReleaseCube(cube);
         }
     }
 }

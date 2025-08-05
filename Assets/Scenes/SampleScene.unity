@@ -272,6 +272,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cubePrefab: {fileID: 9180197506235704940, guid: 6ede43d8b13705d47a7904f16e5f29ed, type: 3}
   _repeatRate: 0.6
+  _maxDelay: 5
+  _minDelay: 2
   _poolCapacity: 10
   _poolMaxSize: 10
 --- !u!114 &330585549
