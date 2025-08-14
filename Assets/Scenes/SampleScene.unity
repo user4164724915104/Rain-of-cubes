@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
-  - component: {fileID: 330585549}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -272,25 +271,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cubePrefab: {fileID: 9180197506235704940, guid: 6ede43d8b13705d47a7904f16e5f29ed, type: 3}
   _repeatRate: 0.6
-  _maxDelay: 5
-  _minDelay: 2
-  _poolCapacity: 10
-  _poolMaxSize: 10
---- !u!114 &330585549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02f6ee1bccf29c14594cf39f1a8699e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _plane: {fileID: 2120601148}
-  _cube: {fileID: 9180197506235704940, guid: 6ede43d8b13705d47a7904f16e5f29ed, type: 3}
-  _pool: {fileID: 330585548}
+  _poolCapacity: 11
+  _poolMaxSize: 11
+  _spawnAreaRange:
+    min: -6
+    max: 6
+    height: 10
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,7 +908,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2120601147}
-  - component: {fileID: 2120601151}
   - component: {fileID: 2120601150}
   - component: {fileID: 2120601149}
   - component: {fileID: 2120601148}
@@ -990,20 +975,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2120601145}
   m_Mesh: {fileID: 1349986963}
---- !u!114 &2120601151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120601145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a48755ae76a70844087dc7658946e803, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sourceMeshFilters: []
-  _targetMeshFilter: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

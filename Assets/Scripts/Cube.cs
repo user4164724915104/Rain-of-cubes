@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent (typeof(Rigidbody))]
 public class Cube : MonoBehaviour
 {
     [SerializeField] private float _minDelay;
@@ -9,8 +10,6 @@ public class Cube : MonoBehaviour
     private Renderer _renderer;
     private bool _isChangeColor = false;
     public event Action<Cube> CubeFallenDown;
-
-    public bool IsChangeColor { get => _isChangeColor; }
 
     private void Start() =>
         _renderer = GetComponent<Renderer>();
