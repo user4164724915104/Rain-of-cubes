@@ -274,9 +274,9 @@ MonoBehaviour:
   _poolCapacity: 11
   _poolMaxSize: 11
   _spawnAreaRange:
-    min: -6
-    max: 6
-    height: 10
+    Min: -6
+    Max: 6
+    Height: 10
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

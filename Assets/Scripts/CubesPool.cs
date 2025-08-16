@@ -5,9 +5,9 @@ using UnityEngine.Pool;
 [System.Serializable]
 public struct SpawnAreaRange
 {
-    public float min;
-    public float max;
-    public float height;
+    public float Min;
+    public float Max;
+    public float Height;
 }
 
 public class CubesPool : MonoBehaviour
@@ -50,10 +50,9 @@ public class CubesPool : MonoBehaviour
 
     private void ActionOnGet(Cube cube)
     {
-        float spawnPointX = Random.Range(_spawnAreaRange.min,_spawnAreaRange.max);
-        float spawnPointZ = Random.Range(_spawnAreaRange.min, _spawnAreaRange.max);
-        cube.transform.position = new Vector3(spawnPointX, _spawnAreaRange.height, spawnPointZ);
-        cube.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+        float spawnPointX = Random.Range(_spawnAreaRange.Min,_spawnAreaRange.Max);
+        float spawnPointZ = Random.Range(_spawnAreaRange.Min, _spawnAreaRange.Max);
+        cube.transform.position = new Vector3(spawnPointX, _spawnAreaRange.Height, spawnPointZ);
         cube.gameObject.SetActive(true);
         cube.CubeFallenDown += ReleaseCube;
     }
