@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent (typeof(Rigidbody))]
 public class Cube : MonoBehaviour
@@ -9,19 +10,24 @@ public class Cube : MonoBehaviour
     [SerializeField] private float _maxDelay;
     private Renderer _renderer;
     private Rigidbody _rigidbody;
+    private Color _color;
     private bool _isChangeColor = false;
     public event Action<Cube> CubeFallenDown;
 
-    private void Start()
+    private void Awake()
     {
         _renderer = GetComponent<Renderer>();
-        _rigidbody = GetComponent<Rigidbody>();
+        _color = _renderer.material.color;
     }
+
+    private void Start() =>
+        _rigidbody = GetComponent<Rigidbody>();
 
     private void OnDisable()
     {
-        _renderer.material.color = Color.gray;
+        _renderer.material.color = _color;
         _rigidbody.linearVelocity = Vector3.zero;
+        _rigidbody.transform.rotation = Quaternion.Euler(0,0,0);
         _isChangeColor = false;
     }
 

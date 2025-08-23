@@ -2,14 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
-[System.Serializable]
-public struct SpawnAreaRange
-{
-    public float Min;
-    public float Max;
-    public float Height;
-}
-
 public class CubesPool : MonoBehaviour
 {
     [SerializeField] private Cube _cubePrefab;
